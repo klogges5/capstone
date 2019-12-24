@@ -3,7 +3,7 @@ I want to analyze fuel prices in germany and investigate in some forecasting mod
 Therefore I used the history data available from [Tankerkoenig](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data), they are available in the azure cloud for private use with the following license
 <https://creativecommons.org/licenses/by-nc-sa/4.0/>. 
 
-The blog post is included in repository as pdf [blog]('./Forecasting of Fuel prices in germany.pdf')
+The blog post is included in repository as pdf [blog](./Forecasting%20of%20Fuel%20prices%20in%20germany.pdf)
 
 
 ## Prerequisites
