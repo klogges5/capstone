@@ -39,7 +39,7 @@ For the forecasting i've created an extra jupyter notebook [Forecasting](./Forec
 
 
 ## Discussion on the Project
-You'll find a discussion of this Project in [Forecasting of Fuel prices in germany](./Forecasting of Fuel prices in germany.pdf)
+You'll find a discussion of this Project in [Forecasting of Fuel prices in germany](./Forecasting%20of%20Fuel%20prices%20in%20germany.pdf)
 
 
 ### Data Structure
