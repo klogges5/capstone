@@ -1,5 +1,5 @@
 # Project description
-I want to analyze fuel prices in germany and investigate in some forecasting models to predict the fuel price in the future.
+The fuel price is like the stock prices changing heavily on a day, but mostly not with the same amplitude. Therefore I want to have a look at the data and see what’s inside. Furthermore I want to build a forecasting model for the price on daily basis.
 Therefore I used the history data available from [Tankerkoenig](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data), they are available in the azure cloud for private use with the following license
 <https://creativecommons.org/licenses/by-nc-sa/4.0/>. 
 
@@ -32,7 +32,7 @@ If you downloaded the History Data (2015-2019) from [Tankerkoenig](https://dev.a
 
 For better handling i have created a slice out off the data, one year of data has around 5 GB. So i collected only stations with PLZ beginning with 40. Loaded the data per year and saved the data for the few stations in a sql file for later use. The needed functions for loading and saving data and for getting a dataset for a special station i've put in [helper_functions](./helper_functions.py).
 
-Therefore you can start directly with [DataPreparation](./DataPrep.ipnyb) there i've done some data analysis and graphical plottings with this data. There i read the data from a sqllite database created before [prices_40.sql](./Data/prices_40.sql). There i've put 2 tables inside `Prices` and `Stations`.
+Therefore you can start directly with [DataPreparation](./DataPrep.ipnyb) there i've done some data analysis and plottings with this data. There i read the data from a sqllite database created before [prices_40.sql](./Data/prices_40.sql). The database consists of 2 tables `Prices` and `Stations`.
 
 For the forecasting i've created an extra jupyter notebook [Forecasting](./Forecasting.ipynb).
 
