@@ -34,7 +34,7 @@ For better handling i have created a slice out off the data, one year of data ha
 
 Therefore you can start directly with [DataPreparation](./DataPrep.ipnyb) there i've done some data analysis and plottings with this data. There i read the data from a sqllite database created before [prices_40.sql](./Data/prices_40.sql). The database consists of 2 tables `Prices` and `Stations`.
 
-For the forecasting i've created an extra jupyter notebook [Forecasting](./Forecasting.ipynb).
+The preparation and implementation for building a forecast model was done in the following notebook [Forecasting](./Forecasting.ipynb). 
 
 
 
