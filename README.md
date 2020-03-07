@@ -1,16 +1,28 @@
-# Project description
+# Udacity Data Scientist Nanodegree Capstone Project<br>"Forecasting of Fuel prices in Germany"
+
+## Table of Contents
+
+1. [Project Description](#description)
+2. [Prerequisites](#prerequisites)
+3. [Instructions and Files](#instructions)
+4. [Discussion on project](#discussion)
+5. [Data Structure of Tankerkoenig](#data)
+6. [Acknowledgements](#acknowledge)
+
+## Project description <a name = "description"/>
 The fuel price is like the stock prices changing heavily on a day, but mostly not with the same amplitude. Therefore I want to have a look at the data and see what’s inside. Furthermore I want to build a forecasting model for the price on daily basis.
-Therefore I used the history data available from [Tankerkoenig](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data), they are available in the azure cloud for private use with the following license
+Therefore I used the history data available from [Tankerkoenig](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data "Tankerkoenig Data"), they are available in the azure cloud for private use with the following license
 <https://creativecommons.org/licenses/by-nc-sa/4.0/>. 
 
-The blog post is included in repository as pdf [blog](./Forecasting%20of%20Fuel%20prices%20in%20germany.pdf)
+The blog post is included in repository as pdf [blog](./Forecasting%20of%20Fuel%20prices%20in%20germany.pdf "Blog post")
 
 
-## Prerequisites
+## Prerequisites <a name = "prerequisites"/>
 History Data from [Tankerkoenig History](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data) if you start in with Data Reading.
 
 
 ## Libraries needed
+I'd used and therefore also recommend to use [Anaconda distribution](https://www.anaconda.com/), because it has most of mentioned libraries included.
 
 - pandas
 - glob
@@ -27,22 +39,23 @@ History Data from [Tankerkoenig History](https://dev.azure.com/tankerkoenig/_git
 
 
 
-## Instructions
-If you downloaded the History Data (2015-2019) from [Tankerkoenig](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data) you can start with [DataRead-Part](./DataRead.ipynb). And have a look at the Data Structure section below.
+## Instructions and Files <a name = "instructions"/>
+If you downloaded the History Data (2015-2019) from [Tankerkoenig](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data) you can start with [DataRead](./DataRead.ipynb "DataRead Notebook"). And have a look at the Data Structure section below.
 
-For better handling i have created a slice out off the data, one year of data has around 5 GB. So i collected only stations with PLZ beginning with 40. Loaded the data per year and saved the data for the few stations in a sql file for later use. The needed functions for loading and saving data and for getting a dataset for a special station i've put in [helper_functions](./helper_functions.py).
+For better handling i have created a slice out off the data, one year of data has around 5 GB. So i collected only stations with PLZ beginning with 40. Loaded the data per year and saved the data for the few stations in a sql file for later use. The needed functions for loading and saving data and for getting a dataset for a special station i've put in [helper_functions](./helper_functions.py "helper").
 
-Therefore you can start directly with [DataPreparation](./DataPrep.ipnyb) there i've done some data analysis and plottings with this data. There i read the data from a sqllite database created before [prices_40.sql](./Data/prices_40.sql). The database consists of 2 tables `Prices` and `Stations`.
+Therefore you can start directly with [DataPreparation](./DataPrep.ipnyb "DataPreparation Notebook") there i've done some data analysis and plottings with this data. There i read the data from a sqllite database created before [prices_40.sql](./Data/prices_40.sql "SQL Data"). The database consists of 2 tables `Prices` and `Stations`.
 
-The preparation and implementation for building a forecast model was done in the following notebook [Forecasting](./Forecasting.ipynb). 
-
-
-
-## Discussion on the Project
-You'll find a discussion of this Project in [Forecasting of Fuel prices in germany](./Forecasting%20of%20Fuel%20prices%20in%20germany.pdf)
+The preparation and implementation for building a forecast model was done in the following notebook [Forecasting](./Forecasting.ipynb "Forecasting Notebook"). 
 
 
-### Data Structure
+
+
+## Discussion on the Project <a name = "discussion"/>
+You'll find a discussion of this Project in [Forecasting of Fuel prices in germany](./Forecasting%20of%20Fuel%20prices%20in%20germany.pdf "Blog post")
+
+
+### Data Structure of Tankerkoenig <a name = "data"/>
 I've put the data in one directory "sprit" and inside this directory there where folder for every year and month. Inside the folders there is a csv-file for every day. So we have
 `./sprit/year/month/year-month-day-prices.csv` for example `./sprit/2015/12/2015-12-01-prices.csv`. That is the same structure as it is on [Tankerkoenig](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data), despite of the `stations.csv`.
 
@@ -72,10 +85,10 @@ The corresponding stations are in the `./sprit/stations.csv` file and have the f
 
 `uuid,name,brand,street,house_number,post_code,city,latitude,longitude`
 
-They are connected via the UUID in both files.
+They are connected via the UUID in both files, so I#ve written a function to extract data from the dataframe for specific UUID and type of fuel.
 
 
-```
+```python
 def get_data4uid(uid, typ):
     """
     Give the typ data for given uid
@@ -83,7 +96,6 @@ def get_data4uid(uid, typ):
     Output: Dataframe"""
     data_uid = pd.DataFrame(prices_pd[prices_pd['station_uuid'] == uid][['date', typ]])
     
-    # has to be changed, but for now utc=True
     data_uid.date = pd.to_datetime(data_uid.date, utc=True)
     
     data_uid.set_index('date', inplace=True)
@@ -91,3 +103,10 @@ def get_data4uid(uid, typ):
     
     return data_uid
 ```
+
+
+## Acknowledgements <a name = "acknowledge"/>
+
+This project is a capstone project for Udacity Data Science nanodegree. Thanks to Udacity preparing me technically on this task with great learning material and projects.
+I've to thank [Tankerkoenig](www.tankerkoenig.de) for the open source of data that makes it only possible to create some data analysis.
+And last but not least thanks to my family for having great patience in the last months.
