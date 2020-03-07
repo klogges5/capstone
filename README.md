@@ -24,6 +24,7 @@ History Data from [Tankerkoenig History](https://dev.azure.com/tankerkoenig/_git
 ## Libraries needed
 I'd used and therefore also recommend to use [Anaconda distribution](https://www.anaconda.com/), because it has most of mentioned libraries included.
 
+You'll need:
 - pandas
 - glob
 - math
