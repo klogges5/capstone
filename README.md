@@ -18,18 +18,18 @@ Therefore I used the history data available from [Tankerkoenig](https://dev.azur
 The blog post is on Medium [Medium Post](https://medium.com/@joerg.meisterjahn/forecast-of-fuel-prices-in-germany-7cba2cfd015b)
 
 ## Project Summary <a name = "summary"/>
-I've build different SARIMAX models and calculated the mean squared error and R2 Score for each. Also i build a LSTM neural network in addition. The models have promising values as you can see here:
+I've found some interesting statistics in the data and visualized them. Additional I've build different SARIMAX models, predicted the fuel price with the models for the test data and calculated the mean squared error and R2 Score for each. Also i build and trained a LSTM neural network. The models have promising values as you can see here:
 
 | Model | MSE | R2 Score |
 | --- | --- | --- |
 | (0,1,1)x(0,1,1,52) | 0.001827971789383413 | -3.891623163418407 |
 | (3,1,1)x(3,1,1,52) | 0.000816361372162868 | -1.184569926617356 |
 | (3,1,2)x(3,1,2,52) | 0.000982089719322026 | -1.628056323129107 |
-| LSTM | 9.64316349699766e-05 | 0.689759056453517 |
+| LSTM | 8.22876984342417e-05 | 0.735263088586480 |
 
-But nevertheless predicting a fuel price is not as easy and if you have a closer look to the predictions, you'll see big differences. Or in case of the LSTM, that it is not really predicting the future. The prediction for more days in the future goes to a limit. 
+But nevertheless predicting a fuel price is not as easy and if you have a closer look to the predictions, you'll see differences. Or in case of the LSTM, that it is not really predicting the future. The prediction for more days in the future goes to a border. 
 
-Therefore the models have to be optimized with other features to have better predictions.
+Therefore the models have to be optimized with other features. 
 
 
 ## Prerequisites <a name = "prerequisites"/>
