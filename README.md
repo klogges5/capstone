@@ -3,11 +3,12 @@
 ## Table of Contents
 
 1. [Project Description](#description)
-2. [Prerequisites](#prerequisites)
-3. [Instructions and Files](#instructions)
-4. [Discussion on project](#discussion)
-5. [Data Structure of Tankerkoenig](#data)
-6. [Acknowledgements](#acknowledge)
+2. [Project Summary](#summary)
+3. [Prerequisites](#prerequisites)
+4. [Instructions and Files](#instructions)
+5. [Discussion on project](#discussion)
+6. [Data Structure of Tankerkoenig](#data)
+7. [Acknowledgements](#acknowledge)
 
 ## Project description <a name = "description"/>
 The fuel price is like the stock prices changing heavily on a day, but mostly not with the same amplitude. Therefore I want to have a look at the data and see what’s inside. Furthermore I want to build a forecasting model for the price on daily basis.
@@ -15,6 +16,20 @@ Therefore I used the history data available from [Tankerkoenig](https://dev.azur
 <https://creativecommons.org/licenses/by-nc-sa/4.0/>. 
 
 The blog post is on Medium [Medium Post](https://medium.com/@joerg.meisterjahn/forecast-of-fuel-prices-in-germany-7cba2cfd015b)
+
+## Project Summary <a name = "summary"/>
+I've build different SARIMAX models and calculated the mean squared error and R2 Score for each. Also i build a LSTM neural network in addition. The models have promising values as you can see here:
+
+| Model | MSE | R2 Score |
+| --- | --- | --- |
+| (0,1,1)x(0,1,1,52) | 0.001827971789383413 | -3.891623163418407 |
+| (3,1,1)x(3,1,1,52) | 0.000816361372162868 | -1.184569926617356 |
+| (3,1,2)x(3,1,2,52) | 0.000982089719322026 | -1.628056323129107 |
+| LSTM | 9.64316349699766e-05 | 0.689759056453517 |
+
+But nevertheless predicting a fuel price is not as easy and if you have a closer look to the predictions, you'll see big differences. Or in case of the LSTM, that it is not really predicting the future. The prediction for more days in the future goes to a limit. 
+
+Therefore the models have to be optimized with other features to have better predictions.
 
 
 ## Prerequisites <a name = "prerequisites"/>
