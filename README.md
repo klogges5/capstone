@@ -14,7 +14,7 @@ The fuel price is like the stock prices changing heavily on a day, but mostly no
 Therefore I used the history data available from [Tankerkoenig](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data "Tankerkoenig Data"), they are available in the azure cloud for private use with the following license
 <https://creativecommons.org/licenses/by-nc-sa/4.0/>. 
 
-The blog post is included in repository as pdf [blog](./Forecasting%20of%20Fuel%20prices%20in%20germany.pdf "Blog post")
+The blog post is on Medium [Medium Post](https://medium.com/@joerg.meisterjahn/forecast-of-fuel-prices-in-germany-7cba2cfd015b)
 
 
 ## Prerequisites <a name = "prerequisites"/>
@@ -41,19 +41,17 @@ You'll need:
 
 
 ## Instructions and Files <a name = "instructions"/>
-If you downloaded the History Data (2015-2019) from [Tankerkoenig](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data) you can start with [DataRead](./DataRead.ipynb "DataRead Notebook"). And have a look at the Data Structure section below.
+If you downloaded the History Data (2015-2019) from [Tankerkoenig](https://dev.azure.com/tankerkoenig/_git/tankerkoenig-data) you can start on the beginning. There I loaded the files and reduced the dataset to a smaller number. The description of the used data structure you can find [below](#data).
 
 For better handling i have created a slice out off the data, one year of data has around 5 GB. So i collected only stations with PLZ beginning with 40. Loaded the data per year and saved the data for the few stations in a sql file for later use. The needed functions for loading and saving data and for getting a dataset for a special station i've put in [helper_functions](./helper_functions.py "helper").
 
-Therefore you can start directly with [DataPreparation](./DataPrep.ipnyb "DataPreparation Notebook") there i've done some data analysis and plottings with this data. There i read the data from a sqllite database created before [prices_40.sql](./Data/prices_40.sql "SQL Data"). The database consists of 2 tables `Prices` and `Stations`.
+If you don't want to download all the data you can run cell 1 for importing all relevant libraries and go directly to **DataAnalysis** section in the notebook and load the data from the sqllite there i've done some data analysis and plottings with this data. There i read the data from a sqllite database created before [prices_40.sql](./Data/prices_40.sql "SQL Data"). The database consists of 2 tables `Prices` and `Stations`.
 
-The preparation and implementation for building a forecast model was done in the following notebook [Forecasting](./Forecasting.ipynb "Forecasting Notebook"). 
-
-
+The preparation and implementation for building a forecast model follows in the notebook. On my MacbookPro (10 GB RAM) it was not possible to calculate the different ARIMA models in a sequence, even I overwrite everytime the data from previous calculation and give back only the fitted ARIMA model and forecast.
 
 
 ## Discussion on the Project <a name = "discussion"/>
-You'll find a discussion of this Project in [Forecasting of Fuel prices in germany](./Forecasting%20of%20Fuel%20prices%20in%20germany.pdf "Blog post")
+You'll find a discussion of this Project in [Medium Post](https://medium.com/@joerg.meisterjahn/forecast-of-fuel-prices-in-germany-7cba2cfd015b)
 
 
 ### Data Structure of Tankerkoenig <a name = "data"/>
@@ -86,7 +84,7 @@ The corresponding stations are in the `./sprit/stations.csv` file and have the f
 
 `uuid,name,brand,street,house_number,post_code,city,latitude,longitude`
 
-They are connected via the UUID in both files, so I#ve written a function to extract data from the dataframe for specific UUID and type of fuel.
+They are connected via the UUID in both files, so I've written a function to extract data from the dataframe for specific UUID and type of fuel.
 
 
 ```python
@@ -110,4 +108,5 @@ def get_data4uid(uid, typ):
 
 This project is a capstone project for Udacity Data Science nanodegree. Thanks to Udacity preparing me technically on this task with great learning material and projects.
 I've to thank [Tankerkoenig](www.tankerkoenig.de) for the open source of data that makes it only possible to create some data analysis.
+
 And last but not least thanks to my family for having great patience in the last months.
